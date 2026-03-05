@@ -1,0 +1,480 @@
+/* --- ESTÉTICA GERAL E MOBILE --- */
+body {
+    background-color: #051330; /* Azul marinho muito escuro para contraste */
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj4KPGcgZmlsbC1ydWxlPSJldmVub2RkIj4KPGcgZmlsbD0iI2I4YjhCOCIgZmlsbC1vcGFjaXR5PSIwLjA1Ij4KPHBhdGggZD0iTTAgMGg0MHY0MEgwVjB6bTAgNDBoNDB2NDBIMFY0MHpNMTAgMTBoMjB2MjBIMTBWMTB6bTAgNDBoMjB2MjBIMTBWNDB6TTQwIDBoNDB2NDBINDBWMHpNMzAgMTBoMjB2MjBIMzBWMTAgem00MCAxMGgyMHYyMEg0MFYxMHpNMTAgNzBoMjB2MjBIMTBWNzB6bTQwLTIwaDIwdjIwSDQwVjUwem0xMC00MGgyMHYyMEg1MFYxMHoiLz4KPC9nPgo8L2c+Cjwvc3ZnPg==');
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    user-select: none; 
+    -webkit-user-select: none; 
+    caret-color: transparent; 
+}
+
+/* Limita o tamanho para parecer um App de celular */
+.app-container {
+    width: 100%;
+    max-width: 450px; 
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- HEADER E CONTROLES SUPERIORES --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #c9a55c;
+    border-bottom: 1px solid rgba(201, 165, 92, 0.3);
+    padding-bottom: 10px;
+}
+
+.header h1 {
+    font-size: 18px;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Banner estilo "Ribbon" (fita) para os movimentos */
+.moves-banner {
+    background-color: #c9a55c;
+    color: #0a214d;
+    padding: 10px 15px 15px 15px;
+    border-radius: 4px 4px 15px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    min-width: 80px;
+}
+
+.moves-title { font-size: 12px; font-weight: bold; text-transform: uppercase; }
+.moves-count { font-size: 28px; line-height: 1; }
+.moves-banner.danger { background-color: #ff4d4d; color: white; } /* Fica vermelho no fim */
+
+.deck-area {
+    display: flex;
+    gap: 10px;
+}
+
+/* Pilha de descarte (Waste Pile) onde caem as cartas compradas */
+.waste-pile {
+    width: 85px;
+    height: 120px;
+    position: relative;
+}
+
+.waste-pile .card {
+    position: absolute;
+    top: 0; left: 0;
+    box-shadow: -3px 3px 6px rgba(0,0,0,0.6);
+}
+
+/* --- ÁREA DOS SLOTS (CATEGORIAS) --- */
+.slots-area {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.slot {
+    width: 90px;
+    height: 130px;
+    border: 2px dashed #c9a55c;
+    border-radius: 6px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(201, 165, 92, 0.05);
+    position: relative;
+    padding-top: 5px;
+    box-sizing: border-box;
+}
+
+.slot-title {
+    z-index: 10; 
+    background-color: #0a214d; 
+    color: #c9a55c;
+    padding: 3px 6px;
+    border-radius: 4px;
+    border: 1px solid #c9a55c;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+/* --- TABLEAU (COLUNAS EM CASCATA) --- */
+.tableau-area {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.tableau-column {
+    width: 85px;
+    min-height: 120px; /* Ajustado para o tamanho exato de uma carta */
+    display: flex;
+    flex-direction: column;
+    
+    /* --- NOVIDADE: Visual de espaço vazio --- */
+    border: 2px dashed rgba(201, 165, 92, 0.3);
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* Efeito de brilho quando arrasta uma carta para o espaço vazio */
+.tableau-column.hovered-column {
+    background-color: rgba(201, 165, 92, 0.1);
+    border-color: #c9a55c;
+}
+
+/* A MÁGICA DA CASCATA: O sinal ">" garante que só afeta as cartas base da coluna */
+.tableau-column > .card {
+    margin-top: -90px; 
+}
+.tableau-column > .card:first-child {
+    margin-top: 0;
+}
+
+
+/* --- DESIGN DAS CARTAS --- */
+.card {
+    width: 85px;
+    height: 120px;
+    background-color: #0a214d; 
+    color: #c9a55c; 
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.7); 
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start; /* Alinha o texto no topo para ler na cascata */
+    align-items: center;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: grab;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    border: 1px solid #c9a55c;
+    padding-top: 10px;
+    box-sizing: border-box;
+}
+
+.card:active { cursor: grabbing; }
+
+/* Para a carta não arrastável não ter o cursor de "mãozinha" */
+.card[draggable="false"] { cursor: default; }
+.card[draggable="true"]:hover { transform: translateY(-5px); }
+
+.card::before {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 60%; height: 60%;
+    border: 1px solid rgba(201, 165, 92, 0.15); z-index: 1;
+}
+
+/* Fundo escuro atrás do texto para garantir leitura na cascata */
+.card span {
+    position: relative; z-index: 2;
+    background-color: rgba(5, 19, 48, 0.9);
+    padding: 2px 4px; border-radius: 3px;
+    text-transform: uppercase; text-align: center;
+}
+
+/* Bloqueia o clique nos elementos de dentro da carta para não bugar o arrasto */
+.card span, 
+.card::before, 
+.card .icon-pattern {
+    pointer-events: none;
+}
+
+/* O Verso da Carta (Montinho) */
+.card.back {
+    background-color: #c9a55c; color: transparent; cursor: pointer;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(10,33,77,0.15) 8px, rgba(10,33,77,0.15) 16px);
+}
+.card.back:hover { background-color: #dcb871; transform: translateY(-3px); }
+.card.back.empty { opacity: 0.3; pointer-events: none; }
+
+/* --- ANIMAÇÕES E ESTADOS DE DRAG & DROP --- */
+.card.dragging { opacity: 0.5; transform: scale(0.95); }
+.slot.hovered { background-color: rgba(201, 165, 92, 0.2); }
+.card.wrong { animation: shake 0.4s; border-color: #ff4d4d; }
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    50% { transform: translateX(4px); }
+    75% { transform: translateX(-4px); }
+    100% { transform: translateX(0); }
+}
+
+/* Carta solta no slot (Empilhamento) */
+.card.correct {
+    background-color: #c9a55c; color: #0a214d;
+    transform: scale(0.9); position: absolute; 
+    top: 25px; left: 0; right: 0; margin: 0 auto; 
+    z-index: 5; box-shadow: 0 2px 4px rgba(0,0,0,0.5); 
+    /* ADICIONE ESTA LINHA ABAIXO: */
+    pointer-events: none; /* Faz o mouse atravessar a carta e soltar na categoria! */
+}
+.card.correct span { background-color: transparent; }
+
+/* Esconde completamente o texto e a geometria quando a carta estiver virada para baixo */
+.card.back span,
+.card.back .icon-pattern,
+.card.back::before {
+    display: none !important;
+}
+
+/* Efeito de brilho quando uma carta é usada como alvo para outra */
+.card.hovered {
+    border: 2px solid #fff;
+    box-shadow: 0 0 15px rgba(201, 165, 92, 0.8);
+    transform: scale(1.05);
+    z-index: 20; /* Garante que ela brilhe por cima das outras */
+}
+
+/* Efeito de brilho quando você segura uma carta sobre a outra */
+.card.hovered-card {
+    box-shadow: 0 0 12px 4px #c9a55c;
+    border-color: #fff;
+}
+
+/* O estilo da carta que foi "grudada" na outra */
+.nested-card {
+    position: absolute;
+    top: 35px; /* Distância da cascata para baixo */
+    left: -1px; 
+    margin-top: 0 !important; /* CORREÇÃO CRÍTICA: Impede que a carta voe para cima */
+    z-index: 10;
+}
+
+/* Quando o grupo inteiro é jogado no Slot, elas se recolhem numa pilha única perfeita */
+.card.correct .nested-card {
+    top: 0; 
+    box-shadow: none;
+}
+
+/* --- MENU LATERAL (HAMBÚRGUER) FUNCIONAL --- */
+.menu {
+    cursor: pointer;
+    font-size: 24px;
+    padding: 5px;
+    transition: transform 0.2s;
+}
+.menu:active { transform: scale(0.9); }
+
+/* Fundo escuro que cobre o jogo */
+.menu-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100; /* Fica por cima de absolutamente tudo */
+    display: flex;
+    justify-content: flex-end; /* Alinha o menu à direita */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Quando o menu é ativado pelo JavaScript */
+.menu-overlay.ativo {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* O painel do menu que desliza */
+.menu-lateral {
+    width: 250px;
+    height: 100%;
+    background-color: #051330;
+    border-left: 2px solid #c9a55c;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.8);
+    transform: translateX(100%); /* Esconde fora da tela à direita */
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-overlay.ativo .menu-lateral {
+    transform: translateX(0); /* Desliza para dentro da tela */
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(201, 165, 92, 0.3);
+}
+
+.menu-header h2 {
+    color: #c9a55c;
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.fechar-menu {
+    color: #c9a55c;
+    font-size: 32px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.menu-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Design dos botões do menu */
+.menu-btn {
+    background-color: transparent;
+    color: #c9a55c;
+    border: 1px solid #c9a55c;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    font-family: inherit;
+}
+
+.menu-btn:hover {
+    background-color: #c9a55c;
+    color: #051330;
+}
+
+/* --- MODAL DE REGRAS CUSTOMIZADO --- */
+.regras-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 200; /* Fica por cima de absolutamente tudo, inclusive do menu */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+/* Ativação via JavaScript */
+.regras-overlay.ativo {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* O "cartão" do quadro de regras */
+.regras-modal {
+    width: 90%;
+    max-width: 350px;
+    background-color: #051330;
+    border: 2px solid #c9a55c;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.9), inset 0 0 20px rgba(201,165,92,0.1);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.regras-overlay.ativo .regras-modal {
+    transform: scale(1); /* Animação de "pulo" ao abrir */
+}
+
+.regras-header {
+    background-color: rgba(201, 165, 92, 0.1);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #c9a55c;
+}
+
+.regras-header h2 {
+    color: #c9a55c;
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+.fechar-regras {
+    color: #c9a55c;
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.fechar-regras:hover { color: #fff; }
+
+.regras-body {
+    padding: 20px;
+    color: #e0e0e0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.regras-body ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.regras-body li {
+    margin-bottom: 15px;
+    padding-left: 20px;
+    position: relative;
+}
+
+/* Adiciona um ícone de espadinha antes de cada regra */
+.regras-body li::before {
+    content: '⚔️';
+    position: absolute;
+    left: -5px;
+    top: 1px;
+    font-size: 12px;
+}
+
+.regras-body strong {
+    color: #c9a55c;
+}
+
+.regras-btn {
+    width: 100%;
+    background-color: #c9a55c;
+    color: #051330;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    font-family: inherit;
+}
+
+.regras-btn:hover { background-color: #dcb871; }
+.regras-btn:active { transform: scale(0.97); }

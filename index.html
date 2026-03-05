@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guerra Peloponesa - Mobile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="coins" data-testid="moedas-jogador">👑 Ouro</div>
+            <h1>LUDUS</h1>
+            <div class="menu" id="btn-abrir-menu" data-testid="btn-abrir-menu">☰</div>
+        </header>
+
+        <div id="menu-overlay" class="menu-overlay" data-testid="menu-overlay">
+            <div class="menu-lateral">
+                <div class="menu-header">
+                    <h2>OPÇÕES</h2>
+                    <span id="btn-fechar-menu" class="fechar-menu" data-testid="btn-fechar-menu">&times;</span>
+                </div>
+                <div class="menu-body">
+                    <button class="menu-btn" onclick="reiniciarPeloMenu()" data-testid="btn-reiniciar-batalha">Reiniciar Batalha</button>
+                    <button class="menu-btn" onclick="mostrarRegras()" data-testid="btn-mostrar-regras">Como Jogar</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="regras-overlay" class="regras-overlay" data-testid="regras-overlay">
+            <div class="regras-modal">
+                <div class="regras-header">
+                    <h2>COMO JOGAR</h2>
+                    <span id="btn-fechar-regras" class="fechar-regras" data-testid="btn-fechar-regras">&times;</span>
+                </div>
+                <div class="regras-body">
+                    <ul>
+                        <li><strong>1. Revele:</strong> Arraste a carta do topo para movimentá-la.</li>
+                        <li><strong>2. Combine:</strong> Agrupe cartas da mesma categoria (Pólis, Líderes, etc.) na mesa.</li>
+                        <li><strong>3. Conquiste:</strong> Envie os grupos de cartas para os slots no topo da mesa.</li>
+                        <li><strong>4. Vença:</strong> Cada movimento custa pontos. Limpe a mesa antes que seus movimentos acabem!</li>
+                    </ul>
+                    <button class="regras-btn" onclick="fecharRegras()" data-testid="btn-entendi-regras">Entendi, à batalha!</button>
+                </div>
+            </div>
+        </div>
+        <div class="top-controls">
+            <div class="moves-banner">
+                <span class="moves-title">Movimentos</span>
+                <strong id="placar-movimentos" class="moves-count" data-testid="placar-movimentos">0</strong>
+            </div>
+            
+            <div class="deck-area">
+                <div id="waste-pile" class="waste-pile" data-testid="pilha-descarte"></div>
+                <div id="montinho-btn" class="card back" onclick="comprarCarta()" data-testid="btn-comprar-carta"></div>
+            </div>
+        </div>
+
+        <div id="slots-container" class="slots-area" data-testid="area-slots"></div>
+
+        <div id="tableau-container" class="tableau-area" data-testid="area-mesa"></div>
+    </div>
+
+    <script src="logica.js"></script>
+</body>
+</html>
