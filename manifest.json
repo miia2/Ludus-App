@@ -1,0 +1,17 @@
+{
+  "name": "Guerra Peloponesa",
+  "short_name": "Ludus",
+  "description": "Jogo estratégico de cartas da Guerra Peloponesa",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#051330",
+  "theme_color": "#c9a55c",
+  "icons": [
+    {
+      "src": "icone.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

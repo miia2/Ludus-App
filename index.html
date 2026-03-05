@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guerra Peloponesa - Mobile</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#c9a55c">
 </head>
 <body>
     <div class="app-container">
@@ -62,5 +64,15 @@
     </div>
 
     <script src="logica.js"></script>
+    <script>
+        // Avisa o navegador para ligar o cérebro offline
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('PWA registrado com sucesso!', reg))
+                    .catch(err => console.log('Erro ao registrar PWA:', err));
+            });
+        }
+    </script>
 </body>
 </html>
