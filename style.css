@@ -166,6 +166,7 @@ body {
     font-weight: bold;
     font-size: 12px;
     cursor: grab;
+    touch-action: none;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     border: 1px solid #c9a55c;

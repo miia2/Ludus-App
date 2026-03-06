@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ludus-cache-v1';
+const CACHE_NAME = 'ludus-cache-v2';
 const arquivosParaSalvar = [
   './index.html',
   './style.css',
