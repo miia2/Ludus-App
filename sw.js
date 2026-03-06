@@ -1,4 +1,5 @@
-const CACHE_NAME = 'ludus-cache-v2';
+// Mudamos para v3 para forçar a atualização
+const CACHE_NAME = 'ludus-cache-v3'; 
 const arquivosParaSalvar = [
   './index.html',
   './style.css',
@@ -6,7 +7,7 @@ const arquivosParaSalvar = [
   './manifest.json'
 ];
 
-// Quando o PWA é instalado, ele guarda os arquivos do jogo
+// 1. Instala e guarda os arquivos
 self.addEventListener('install', evento => {
   evento.waitUntil(
     caches.open(CACHE_NAME)
@@ -14,7 +15,23 @@ self.addEventListener('install', evento => {
   );
 });
 
-// Quando o jogador abre o app, ele busca da memória (mesmo offline)
+// 2. O LIXEIRO (NOVO): Apaga as versões velhas do celular
+self.addEventListener('activate', evento => {
+  evento.waitUntil(
+    caches.keys().then(nomesDosCaches => {
+      return Promise.all(
+        nomesDosCaches.map(nome => {
+          if (nome !== CACHE_NAME) {
+            console.log('Apagando cache velho:', nome);
+            return caches.delete(nome);
+          }
+        })
+      );
+    })
+  );
+});
+
+// 3. Responde usando o cache ou a internet
 self.addEventListener('fetch', evento => {
   evento.respondWith(
     caches.match(evento.request)
