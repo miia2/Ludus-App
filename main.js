@@ -7,7 +7,8 @@ import {
 
 import { 
     atualizarPlacar, atualizarVisorMontinho, 
-    abrirMenu, fecharMenu, mostrarRegras, fecharRegras 
+    abrirMenu, fecharMenu, mostrarRegras, fecharRegras,
+    abrirRanking, fecharRanking, renderizarRanking // AS TRÊS NOVAS AQUI
 } from './ui.js';
 
 import { 
@@ -195,10 +196,49 @@ export function registrarAcerto(numCartasNoGrupo) {
     cartasCorretas += numCartasNoGrupo;
     
     if (cartasCorretas === totalCartasDaRodada && movimentosRestantes >= 0) {
-        setTimeout(() => {
-            alert("Vitória! Estratégia impecável.");
+        setTimeout(async () => {
+            // 1. Pergunta o nome do estrategista
+            const nomeJogador = prompt("Vitória! Estratégia impecável. Digite seu nome para o Ranking:") || "Espartano Anônimo";
+            
+            // 2. Calcula quantos movimentos foram gastos (quanto menos, melhor no ranking!)
+            const movimentosGastos = (totalCartasDaRodada + margemDeErro) - movimentosRestantes;
+            
+            try {
+                // 3. O Garçom (Fetch) enviando o pedido para o Python
+                await fetch("http://127.0.0.1:8000/salvar", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        nome: nomeJogador,
+                        movimentos: movimentosGastos
+                    })
+                });
+                
+                alert("Sua pontuação foi salva no mural dos heróis!");
+            } catch (erro) {
+                console.error("Erro ao salvar no servidor:", erro);
+                alert("Você venceu, mas o servidor está offline no momento.");
+            }
+
             iniciarFase(); 
         }, 500);
+    }
+}
+
+// O Garçom buscando o Top 10
+async function buscarEmostrarRanking() {
+    abrirRanking(); // Abre a tela imediatamente
+    
+    try {
+        const resposta = await fetch("http://127.0.0.1:8000/ranking");
+        const dados = await resposta.json(); // Transforma a resposta do Python em JavaScript
+        
+        renderizarRanking(dados); // Manda o ui.js desenhar a tela
+    } catch (erro) {
+        console.error("Erro ao buscar ranking:", erro);
+        document.getElementById('lista-ranking').innerHTML = '<li>O Oráculo está offline. Tente novamente mais tarde.</li>';
     }
 }
 
@@ -228,8 +268,12 @@ document.getElementById('btn-reiniciar').addEventListener('click', () => {
 });
 document.getElementById('btn-regras').addEventListener('click', mostrarRegras);
 
-// Inicia o jogo!
-iniciarFase();
+// OS FIOS NOVOS DO RANKING QUE FALTAVAM
+document.getElementById('btn-ranking').addEventListener('click', buscarEmostrarRanking);
+document.getElementById('btn-fechar-ranking').addEventListener('click', fecharRanking);
+document.getElementById('ranking-overlay').addEventListener('click', function(e) {
+    if (e.target === this) fecharRanking();
+});
 
 // Inicia o jogo!
 iniciarFase();

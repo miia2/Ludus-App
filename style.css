@@ -478,4 +478,24 @@ body {
 }
 
 .regras-btn:hover { background-color: #dcb871; }
+
 .regras-btn:active { transform: scale(0.97); }
+
+/* --- ESTILOS DO RANKING --- */
+.ranking-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+.ranking-list li {
+    padding: 10px 5px;
+    border-bottom: 1px solid rgba(201, 165, 92, 0.3); /* Linha dourada suave */
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1em;
+}
+.ranking-list li .movimentos-destaque {
+    color: #c9a55c; /* Dourado */
+    font-weight: bold;
+}

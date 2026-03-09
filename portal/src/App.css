@@ -1,0 +1,68 @@
+.portal-container {
+  width: 100%;
+  max-width: 600px; /* Mantém a lista com um tamanho elegante para leitura */
+  padding: 2rem;
+  text-align: center;
+  /* Removemos o background daqui, pois agora ele está no body inteiro! */
+}
+
+h1 {
+  color: #c9a55c; /* Dourado */
+}
+
+.ranking-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #c9a55c;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.lista-react {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item-heroi {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(201, 165, 92, 0.2);
+  font-size: 1.2em;
+}
+
+.item-heroi:last-child {
+  border-bottom: none;
+}
+
+.destaque {
+  color: #c9a55c;
+  font-weight: bold;
+}
+
+/* --- BOTÃO DE VOLTAR --- */
+.acoes-portal {
+  margin-top: 40px;
+}
+
+.btn-voltar {
+  display: inline-block;
+  background-color: transparent;
+  color: #c9a55c; /* Letra dourada */
+  border: 2px solid #c9a55c; /* Borda dourada */
+  padding: 15px 30px;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-decoration: none; /* Tira o sublinhado do link */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Animação suave */
+}
+
+/* O efeito quando o jogador passa o mouse por cima */
+.btn-voltar:hover {
+  background-color: #c9a55c; /* Fundo fica dourado */
+  color: #051330; /* Letra fica azul escura */
+  box-shadow: 0 0 15px rgba(201, 165, 92, 0.4); /* Brilho leve */
+}

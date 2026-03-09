@@ -32,6 +32,8 @@
                 </div>
                 <div class="menu-body">
                     <button id="btn-reiniciar" class="menu-btn" data-testid="btn-reiniciar-batalha">Reiniciar Batalha</button>
+                    <button id="btn-ranking" class="menu-btn">🏆 Ranking dos Heróis</button>
+
                     <button id="btn-regras" class="menu-btn" data-testid="btn-mostrar-regras">Como Jogar</button>
                 </div>
             </div>
@@ -54,7 +56,21 @@
                 </div>
             </div>
         </div>
-        
+
+        <div id="ranking-overlay" class="regras-overlay">
+            <div class="regras-modal">
+                <div class="regras-header">
+                    <h2>MURAL DOS HERÓIS</h2>
+                    <span id="btn-fechar-ranking" class="fechar-regras">&times;</span>
+                </div>
+                <div class="regras-body">
+                    <ul id="lista-ranking" class="ranking-list">
+                        <li>Consultando os pergaminhos...</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <div class="top-controls">
             <div class="moves-banner">
                 <span class="moves-title">Movimentos</span>

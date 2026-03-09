@@ -1,0 +1,18 @@
+/* Limpa as margens padrão do navegador e pinta a tela toda de azul */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #051330; /* O azul escuro do seu jogo */
+  color: #ffffff;
+  font-family: system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+/* Garante que a raiz do React ocupe a tela toda */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center; /* Centraliza o conteúdo horizontalmente */
+}

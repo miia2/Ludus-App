@@ -43,3 +43,32 @@ export function mostrarRegras() {
 export function fecharRegras() {
     document.getElementById('regras-overlay').classList.remove('ativo');
 }
+
+// Funções do Ranking
+export function abrirRanking() {
+    fecharMenu(); 
+    setTimeout(() => {
+        document.getElementById('ranking-overlay').classList.add('ativo');
+    }, 300); 
+}
+
+export function fecharRanking() {
+    document.getElementById('ranking-overlay').classList.remove('ativo');
+}
+
+export function renderizarRanking(dadosDoServidor) {
+    const lista = document.getElementById('lista-ranking');
+    lista.innerHTML = ''; // Limpa o texto de "Consultando..."
+
+    if (dadosDoServidor.length === 0) {
+        lista.innerHTML = '<li>Nenhum herói registrado ainda. Seja o primeiro!</li>';
+        return;
+    }
+
+    // Pega cada jogador que veio do Python e cria uma linha na lista
+    dadosDoServidor.forEach((jogador, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span>${index + 1}. ${jogador.nome}</span> <span class="movimentos-destaque">${jogador.movimentos} movs</span>`;
+        lista.appendChild(li);
+    });
+}
