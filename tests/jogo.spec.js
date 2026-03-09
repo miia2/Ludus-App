@@ -23,7 +23,7 @@ async function dragAndDropHtml5(sourceLocator, targetLocator) {
 test.describe('Testes do Jogo Guerra Peloponesa', () => {
 
   test.beforeEach(async ({ page }) => {
-    await page.goto('file:///C:/Users/T-Gamer/Desktop/M%C3%ADrian/T.I/Jogo/index.html');
+    await page.goto('http://127.0.0.1:5500/index.html');
     await page.getByTestId('btn-entendi-regras').click({ force: true });
     await page.waitForTimeout(300); 
   });

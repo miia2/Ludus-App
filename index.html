@@ -31,8 +31,8 @@
                     <span id="btn-fechar-menu" class="fechar-menu" data-testid="btn-fechar-menu">&times;</span>
                 </div>
                 <div class="menu-body">
-                    <button class="menu-btn" onclick="reiniciarPeloMenu()" data-testid="btn-reiniciar-batalha">Reiniciar Batalha</button>
-                    <button class="menu-btn" onclick="mostrarRegras()" data-testid="btn-mostrar-regras">Como Jogar</button>
+                    <button id="btn-reiniciar" class="menu-btn" data-testid="btn-reiniciar-batalha">Reiniciar Batalha</button>
+                    <button id="btn-regras" class="menu-btn" data-testid="btn-mostrar-regras">Como Jogar</button>
                 </div>
             </div>
         </div>
@@ -50,10 +50,11 @@
                         <li><strong>3. Conquiste:</strong> Envie os grupos de cartas para os slots no topo da mesa.</li>
                         <li><strong>4. Vença:</strong> Cada movimento custa pontos. Limpe a mesa antes que seus movimentos acabem!</li>
                     </ul>
-                    <button class="regras-btn" onclick="fecharRegras()" data-testid="btn-entendi-regras">Entendi, à batalha!</button>
+                    <button id="btn-entendi-regras" class="regras-btn" data-testid="btn-entendi-regras">Entendi, à batalha!</button>
                 </div>
             </div>
         </div>
+        
         <div class="top-controls">
             <div class="moves-banner">
                 <span class="moves-title">Movimentos</span>
@@ -62,7 +63,7 @@
             
             <div class="deck-area">
                 <div id="waste-pile" class="waste-pile" data-testid="pilha-descarte"></div>
-                <div id="montinho-btn" class="card back" onclick="comprarCarta()" data-testid="btn-comprar-carta"></div>
+                <div id="montinho-btn" class="card back" data-testid="btn-comprar-carta"></div>
             </div>
         </div>
 
@@ -71,7 +72,7 @@
         <div id="tableau-container" class="tableau-area" data-testid="area-mesa"></div>
     </div>
 
-    <script src="logica.js"></script>
+    <script type="module" src="main.js"></script>
     <script>
         // Avisa o navegador para ligar o cérebro offline
         if ('serviceWorker' in navigator) {
