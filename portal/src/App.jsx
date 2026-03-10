@@ -50,7 +50,7 @@ function App() {
 
       {/* A PONTE DE VOLTA PARA O JOGO */}
       <div className="acoes-portal">
-        <a href="http://127.0.0.1:5500/" className="btn-voltar">
+        <a href="https://127.0.0.1:5500/" className="btn-voltar">
           ⚔️ Voltar para a Batalha
         </a>
       </div>

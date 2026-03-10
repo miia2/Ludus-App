@@ -205,7 +205,7 @@ export function registrarAcerto(numCartasNoGrupo) {
             
             try {
                 // 3. O Garçom (Fetch) enviando o pedido para o Python
-                await fetch("http://ludus-api.onrender.com/salvar", {
+                await fetch("https://ludus-api.onrender.com/salvar", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
