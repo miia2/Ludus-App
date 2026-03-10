@@ -9,7 +9,7 @@ function App() {
   // 2. A Ação ao Carregar a Tela (useEffect)
   useEffect(() => {
     // O nosso "garçom" vai lá no Python buscar o Top 10
-    fetch('http://127.0.0.1:8000/ranking')
+    fetch('https://ludus-api.onrender.com/ranking')
       .then(resposta => resposta.json())
       .then(dados => {
         setHerois(dados); // Salva os dados na memória do React

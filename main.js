@@ -205,7 +205,7 @@ export function registrarAcerto(numCartasNoGrupo) {
             
             try {
                 // 3. O Garçom (Fetch) enviando o pedido para o Python
-                await fetch("http://127.0.0.1:8000/salvar", {
+                await fetch("http://ludus-api.onrender.com/salvar", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -232,7 +232,7 @@ async function buscarEmostrarRanking() {
     abrirRanking(); // Abre a tela imediatamente
     
     try {
-        const resposta = await fetch("http://127.0.0.1:8000/ranking");
+        const resposta = await fetch("https://ludus-api.onrender.com/ranking");
         const dados = await resposta.json(); // Transforma a resposta do Python em JavaScript
         
         renderizarRanking(dados); // Manda o ui.js desenhar a tela
