@@ -50,7 +50,7 @@ function App() {
 
       {/* A PONTE DE VOLTA PARA O JOGO */}
       <div className="acoes-portal">
-        <a href="https://127.0.0.1:5500/" className="btn-voltar">
+        <a href="https://miia2.github.io/Ludus-App/" className="btn-voltar">
           ⚔️ Voltar para a Batalha
         </a>
       </div>
